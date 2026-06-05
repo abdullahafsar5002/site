@@ -6,15 +6,19 @@
     <title>Toruk Makto - Pakistan's 1st Golf League</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ==========================================
+           1. CORE ARCHITECTURE & GLOBAL RESETS
+           ========================================== */
         :root {
-            --primary-color: #0c4b31; /* Deep Golf Tournament Green */
-            --secondary-color: #111111; /* Off-black for premium contrast */
-            --accent-color: #b89742; /* Premium Gold */
+            --primary-color: #0c4b31;    
+            --secondary-color: #111111;  
+            --accent-color: #b89742;     
             --light-bg: #f7f9f6;
             --white: #ffffff;
             --text-dark: #333333;
             --text-light: #777777;
             --border-color: #e2e8f0;
+            --accent-gradient: linear-gradient(135deg, #b89742, #0c4b31);
         }
 
         * {
@@ -23,16 +27,29 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             background-color: var(--light-bg);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; /* Hard safety barrier against any rogue horizontal layout shifting */
+            width: 100%;
         }
 
         a {
             text-decoration: none;
             color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         .container {
@@ -41,7 +58,9 @@
             margin: 0 auto;
         }
 
-        /* Sticky Navigation Bar */
+        /* ==========================================
+           2. HEADER & NAVIGATION
+           ========================================== */
         header {
             background-color: var(--secondary-color);
             color: var(--white);
@@ -49,6 +68,7 @@
             top: 0;
             z-index: 1000;
             border-bottom: 3px solid var(--accent-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .navbar {
@@ -56,6 +76,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.8rem 0;
+            gap: 1rem;
         }
 
         .brand-wrapper {
@@ -65,7 +86,7 @@
         }
 
         .nav-logo-img {
-            height: 50px;
+            height: clamp(40px, 6vw, 50px);
             width: auto;
             border-radius: 50%;
             border: 2px solid var(--accent-color);
@@ -74,7 +95,7 @@
 
         .logo-text {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 4vw, 1.2rem);
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -86,31 +107,34 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: clamp(1rem, 2.5vw, 2rem);
         }
 
         .nav-links a {
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            transition: color 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            padding: 0.25rem 0;
         }
 
         .nav-links a:hover {
             color: var(--accent-color);
         }
 
-        /* Hero Showcase Section */
+        /* ==========================================
+           3. HERO SHOWCASE AREA
+           ========================================== */
         .hero {
-            background: linear-gradient(rgba(12, 75, 49, 0.85), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            background: linear-gradient(rgba(12, 75, 49, 0.88), rgba(17, 17, 17, 0.92)), url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
             color: var(--white);
-            padding: 6rem 0;
+            padding: clamp(4rem, 10vw, 7rem) 0;
             text-align: center;
         }
 
         .hero-logo-img {
-            height: 120px;
+            height: clamp(80px, 15vw, 120px);
             width: auto;
             border-radius: 50%;
             border: 3px solid var(--accent-color);
@@ -120,51 +144,59 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
             font-weight: 700;
             margin-bottom: 1rem;
             letter-spacing: 1px;
+            line-height: 1.2;
+            padding: 0 0.5rem;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: #cbd5e1;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 1rem;
         }
 
         .hero-venues {
             display: inline-block;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 0.75rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.08);
+            padding: 0.8rem 1.5rem;
             border-radius: 4px;
             border: 1px solid var(--accent-color);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             font-weight: 600;
             letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+            max-width: 90%;
         }
 
-        /* Section Global Typography */
+        /* ==========================================
+           4. GLOBAL LAYOUT SECTIONS
+           ========================================== */
         .section {
-            padding: 5rem 0;
+            padding: clamp(3.5rem, 8vw, 6rem) 0;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
             position: relative;
-            margin-bottom: 3rem;
+            margin-bottom: clamp(2.5rem, 6vw, 4rem);
             font-weight: 700;
             color: var(--primary-color);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
@@ -172,38 +204,43 @@
             background-color: var(--accent-color);
         }
 
-        /* About & Statement Box */
         .statement-box {
             background-color: var(--white);
             border-left: 5px solid var(--accent-color);
-            padding: 2.5rem;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            margin-bottom: 4rem;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            margin-bottom: clamp(2.5rem, 6vw, 4rem);
             text-align: center;
         }
 
         .statement-box blockquote {
-            font-size: 1.2rem;
+            font-size: clamp(1.05rem, 3vw, 1.25rem);
             font-style: italic;
             color: var(--primary-color);
             font-weight: 600;
         }
 
-        /* Media Network Grid */
+        /* About Media Cards Grid */
         .media-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .media-card {
             background-color: var(--white);
-            padding: 2rem;
+            padding: clamp(1.8rem, 4vw, 2.5rem) clamp(1.2rem, 3vw, 2rem);
             border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
             border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
         }
 
         .media-card h3 {
@@ -214,19 +251,102 @@
             letter-spacing: 0.5px;
         }
 
-        /* Franchise Roster Configurations */
+        /* ==========================================
+           5. FIXED LEADERSHIP & VISION SECTION
+           ========================================== */
+        .owner-profile-container {
+            display: flex;
+            flex-direction: column; /* Mobile-first stacking */
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        .owner-info {
+            width: 100%;
+        }
+
+        .owner-info h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .owner-subtitle {
+            font-weight: 600;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .owner-info p {
+            margin-bottom: 1.25rem;
+            color: var(--text-dark);
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            text-align: left; /* Stopped 'justify' alignment to block layout engine text overlap crashes */
+        }
+
+        .owner-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .main-image-box {
+            width: 100%;
+        }
+
+        .main-image-box img {
+            width: 100%;
+            height: auto;
+            max-height: 480px; /* Safety guard preventing oversized desktop vertical stretching */
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+        }
+
+        .thumb-images-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .thumb-images-box img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        /* ==========================================
+           6. FRANCHISE TEAM CARDS
+           ========================================== */
         .teams-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
 
         .team-card {
             background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
             overflow: hidden;
             border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-3px);
         }
 
         .team-header {
@@ -246,6 +366,7 @@
         .team-meta {
             font-size: 0.85rem;
             color: #cbd5e1;
+            line-height: 1.4;
         }
 
         .team-meta strong {
@@ -268,13 +389,13 @@
         .roster-list {
             list-style: none;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 0.5rem;
             font-size: 0.85rem;
         }
 
         .roster-list li {
-            padding: 0.25rem 0;
+            padding: 0.4rem 0;
             border-bottom: 1px dashed var(--border-color);
             display: flex;
             justify-content: space-between;
@@ -287,33 +408,44 @@
         }
 
         .other-teams {
-            margin-top: 3rem;
+            margin-top: clamp(2.5rem, 6vw, 4rem);
             text-align: center;
             background-color: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
         }
 
         .other-teams span {
             display: inline-block;
-            background-color: #e2e8f0;
-            padding: 0.5rem 1rem;
-            margin: 0.5rem;
-            border-radius: 20px;
+            background-color: #edf2f7;
+            padding: 0.6rem 1.4rem;
+            margin: 0.4rem;
+            border-radius: 30px;
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--primary-color);
+            transition: all 0.2s ease;
         }
 
-        /* Leaderboard & Standings Table */
+        .other-teams span:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* ==========================================
+           7. TABLES & PERFORMANCE OVERLAYS
+           ========================================== */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
             background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            margin-bottom: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            margin-bottom: clamp(2.5rem, 6vw, 4rem);
+            border: 1px solid var(--border-color);
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
@@ -321,23 +453,21 @@
             border-collapse: collapse;
             text-align: left;
             font-size: 0.95rem;
+            min-width: 600px;
         }
 
         th {
             background-color: var(--secondary-color);
             color: var(--white);
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.5rem;
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 0.5px;
         }
 
-        th:first-child { border-top-left-radius: 8px; }
-        th:last-child { border-top-right-radius: 8px; }
-
         td {
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.5rem;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -350,26 +480,26 @@
             background-color: #f0fdf4 !important;
         }
 
-        /* Top Individual Performers Area */
         .performers-card {
             background-color: var(--white);
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
         }
 
         .performers-list {
             list-style: none;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.5rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
 
         .performers-list li {
             background-color: var(--light-bg);
-            padding: 1.25rem;
-            border-radius: 6px;
+            padding: 1.5rem;
+            border-radius: 8px;
             border-left: 4px solid var(--accent-color);
         }
 
@@ -377,7 +507,7 @@
             display: block;
             color: var(--secondary-color);
             font-size: 1.05rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.4rem;
         }
 
         .performers-list span {
@@ -385,14 +515,20 @@
             color: var(--text-light);
         }
 
-        /* Strategic Corporate Matrix */
+        /* ==========================================
+           8. CORPORATE SPONSOR ARCHITECTURE
+           ========================================== */
         .partners-block {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .partners-block:last-child {
+            margin-bottom: 0;
         }
 
         .partners-block h3 {
             font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -400,33 +536,36 @@
         }
 
         .partners-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
         }
 
         .partner-logo-box {
             background-color: var(--white);
-            padding: 1.5rem 2.5rem;
-            border-radius: 6px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            padding: 1.2rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
             border: 1px solid var(--border-color);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 220px;
             text-align: center;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            transition: border-color 0.3s ease;
         }
-        /* Social Media Elements Styling */
+
+        .partner-logo-box:hover {
+            border-color: var(--accent-color);
+        }
+
         .social-links-wrapper {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
             margin-top: 1rem;
         }
@@ -438,11 +577,11 @@
             background-color: #1e293b;
             color: #cbd5e1;
             padding: 0.6rem 1.2rem;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 0.85rem;
             font-weight: 600;
             border: 1px solid #334155;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .social-btn:hover {
@@ -450,22 +589,23 @@
             color: var(--secondary-color);
             border-color: var(--accent-color);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(184, 151, 66, 0.2);
         }
 
-        /* Footer Configurations */
+        /* ==========================================
+           9. FOOTER PRODUCTION MODULE
+           ========================================== */
         footer {
             background-color: var(--secondary-color);
             color: #94a3b8;
-            padding: 4rem 0 2rem 0;
+            padding: clamp(3rem, 6vw, 5rem) 0 2rem 0;
             font-size: 0.9rem;
-            border-top: 4px solid var(--primary-color);
+            border-top: 5px solid var(--primary-color);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
             margin-bottom: 3rem;
         }
 
@@ -480,30 +620,171 @@
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid #334155;
+            border-top: 1px solid #232d3d;
             font-size: 0.8rem;
         }
 
-       @media (max-width: 768px) {
+        .footer-credit {
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        /* Designer Toast Card */
+        .designer-toast-card {
+            position: fixed;
+            bottom: 24px;
+            right: -400px; 
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+            border-radius: 14px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 999999;
+            overflow: hidden;
+            transition: right 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+            opacity: 0;
+            max-width: calc(100% - 32px);
+        }
+
+        .designer-toast-card.slide-in {
+            right: 24px;
+            opacity: 1;
+        }
+
+        .toast-left-border {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: var(--accent-gradient);
+        }
+
+        .toast-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .toast-text {
+            color: var(--secondary-color);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: -0.2px;
+        }
+
+        .toast-highlight {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .toast-close-btn {
+            background: transparent;
+            border: none;
+            color: #a0aec0;
+            font-size: 13px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toast-close-btn:hover {
+            color: var(--secondary-color);
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* ==========================================
+           10. EXPLICIT FIXED BREAKPOINT MEDIA QUERIES
+           ========================================== */
+
+        /* Small Phones (Up to 480px) */
+        @media (max-width: 480px) {
             .navbar {
                 flex-direction: column;
-                gap: 1.2rem;
+                text-align: center;
+                gap: 0.8rem;
             }
-            .hero h1 {
-                font-size: 2.2rem;
+            .nav-links {
+                gap: 0.8rem 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
             }
+            .designer-toast-card {
+                bottom: 16px;
+                left: 16px;
+                right: -400px;
+                width: calc(100% - 32px);
+            }
+            .designer-toast-card.slide-in {
+                right: 16px;
+            }
+        }
+
+        /* Smart Phones & Tablets (481px to 767px) */
+        @media (min-width: 481px) {
             .roster-list {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr; /* Roster splits safely into 2 columns */
             }
-            .social-links-wrapper {
-                justify-content: flex-start;
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Tablets to Small Laptops (768px to 1023px) */
+        @media (min-width: 768px) {
+            .media-grid {
+                grid-template-columns: repeat(3, 1fr); /* Horizon overview boxes sync */
+            }
+            .teams-grid {
+                grid-template-columns: repeat(2, 1fr); /* Balances tournament cards perfectly */
+            }
+            .performers-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* True Screen Breakpoint for Heavy 2-Column Desktop Data Layouts (1024px and up) */
+        @media (min-width: 1024px) {
+            .owner-profile-container {
+                flex-direction: row; /* Safely activates twin desktop splits when screen area is abundant */
+                align-items: flex-start;
+            }
+            .owner-info, .owner-gallery {
+                flex: 1;
+                width: 50%;
+            }
+            .teams-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 clean structural card column blocks */
+            }
+            .partners-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sticky Navigation Bar -->
     <header>
         <div class="container navbar">
             <div class="brand-wrapper">
@@ -512,6 +793,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
+                <li><a href="#leadership">Leadership</a></li>
                 <li><a href="#teams">Teams</a></li>
                 <li><a href="#standings">Standings</a></li>
                 <li><a href="#partners">Partners</a></li>
@@ -519,7 +801,6 @@
         </div>
     </header>
 
-    <!-- Hero Showcase Section -->
     <section class="hero">
         <div class="container">
             <img src="logo toruk.jpg" alt="Toruk Makto Platinum Logo" class="hero-logo-img">
@@ -529,13 +810,12 @@
         </div>
     </section>
 
-    <!-- About & News Media Section -->
     <section id="about" class="section">
         <div class="container">
             <h2 class="section-title">League Overview</h2>
-            
+
             <div class="statement-box">
-                blockquote>
+                <blockquote>
                     "For everything you have done for us in the past & supporting our management team, players, we at Toruk Makto Pakistan just want you to know how thankful we are, and we look forward to a prosperous future together."
                 </blockquote>
             </div>
@@ -557,13 +837,39 @@
         </div>
     </section>
 
-    <!-- Teams and Rosters Section -->
+    <section id="leadership" class="section" style="background-color: var(--white); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <h2 class="section-title">Leadership & Vision</h2>
+            
+            <div class="owner-profile-container">
+                <div class="owner-info">
+                    <h3>Abrar Asif</h3>
+                    <span class="owner-subtitle">Founder & Owner, Toruk Makto Golf League</span>
+                    <p>
+                        Abrar Asif is the foundational visionary behind Toruk Makto, Pakistan's historical first commercial corporate golf league framework. Driven by a commitment to modernize the domestic sporting paradigm, he successfully bridged premium commercial corporate groups with elite athletic performance pipelines across Pakistan's iconic clubs.
+                    </p>
+                    <p>
+                        An active competitive single-digit handicapper himself, Abrar understands the deep mechanical, institutional, and environmental needs of professional players. Through strategic high-profile structural design, he built a unified matrix that empowers local golf clubs, anchors national multi-platform sports visibility networks, and crafts historic growth blueprints for upcoming generations of competitive athletes across the country.
+                    </p>
+                </div>
+                <div class="owner-gallery">
+                    <div class="main-image-box">
+                        <img src="27536.jpg" alt="Abrar Asif delivering executive opening speech at Toruk Makto launch event">
+                    </div>
+                    <div class="thumb-images-box">
+                        <img src="27528.jpg" alt="Abrar Asif during press interview with sports media">
+                        <img src="27529.jpg" alt="Abrar Asif speaking on podium at DAC&GC venue award ceremony">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="teams" class="section" style="background-color: #f1f5f9;">
         <div class="container">
             <h2 class="section-title">Official League Franchises</h2>
-            
+
             <div class="teams-grid">
-                <!-- Team 1 -->
                 <div class="team-card">
                     <div class="team-header">
                         <h3>Grey Wolf</h3>
@@ -590,7 +896,6 @@
                     </div>
                 </div>
 
-                <!-- Team 2 -->
                 <div class="team-card">
                     <div class="team-header">
                         <h3>Viper Combat</h3>
@@ -606,12 +911,12 @@
                             <li>Brig Basharat <span>HC 13</span></li>
                             <li>Col Aashar Rizwan <span>HC 9</span></li>
                             <li>Brig Abid <span>HC 14</span></li>
-                            <li>Brig Retd M. Zubair <span>HC 11</span></li>
+                            <li>Retd M. Zubair <span>HC 11</span></li>
                             <li>Brig Khadim Jatoi <span>HC 15</span></li>
                             <li>Col Munawer <span>HC 15</span></li>
                             <li>Brig Farhan <span>HC 12</span></li>
                             <li>Col Maqbool Shah <span>HC 16</span></li>
-                            <li>Lt Col Ansar Iqbal <span>HC 9</span></li>
+                            <li>Lt Col Ansar <span>HC 9</span></li>
                             <li>Sqn Ldr Aamir <span>HC 10</span></li>
                             <li>Adnan Javed <span>HC 10</span></li>
                             <li>Col Farooq Niazi <span>HC 14</span></li>
@@ -619,7 +924,6 @@
                     </div>
                 </div>
 
-                <!-- Team 3 -->
                 <div class="team-card">
                     <div class="team-header">
                         <h3>Markhors</h3>
@@ -647,7 +951,6 @@
                     </div>
                 </div>
 
-                <!-- Team 4 -->
                 <div class="team-card">
                     <div class="team-header">
                         <h3>Nocturnal Bats</h3>
@@ -657,13 +960,13 @@
                         <div class="roster-title">Official Roster</div>
                         <ul class="roster-list">
                             <li>Irfan Ali <span>HC 18</span></li>
-                            <li>Lt Cdr Naeem Mirza <span>HC 16</span></li>
+                            <li>Lt Cdr N. Mirza <span>HC 16</span></li>
                             <li>Asim Shah <span>HC 12</span></li>
                             <li>Amanullah <span>HC 18</span></li>
                             <li>Musab Asif <span>HC 20</span></li>
                             <li>Maj Sharjeel <span>HC 4</span></li>
                             <li>Maj Gen Zafar <span>HC 15</span></li>
-                            <li>Mukhzar Mehmood <span>HC 5</span></li>
+                            <li>M. Mehmood <span>HC 5</span></li>
                             <li>Col Asif Hameed <span>HC 12</span></li>
                             <li>Nawaz Sipra <span>HC 18</span></li>
                             <li>Shayan Rashid <span>HC 15</span></li>
@@ -673,7 +976,6 @@
                     </div>
                 </div>
 
-                <!-- Team 5 -->
                 <div class="team-card">
                     <div class="team-header">
                         <h3>Snow Leopard</h3>
@@ -690,7 +992,7 @@
                             <li>Raza Rashid <span>-</span></li>
                             <li>Ali Maniya <span>-</span></li>
                             <li>Yousuf Kadeer <span>-</span></li>
-                            <li>Ahmed Jamil Siddiqi <span>-</span></li>
+                            <li>A. Jamil Siddiqi <span>-</span></li>
                             <li>Navaid Ali <span>-</span></li>
                             <li>Sajid Sharif <span>-</span></li>
                             <li>Noman Haider <span>-</span></li>
@@ -712,11 +1014,10 @@
         </div>
     </section>
 
-    <!-- Tournament Standings & Scorecard Section -->
     <section id="standings" class="section">
         <div class="container">
             <h2 class="section-title">Tournament Results</h2>
-            <p style="text-align: center; margin-top: -2rem; margin-bottom: 3rem; color: var(--text-light); font-weight: 600;">
+            <p style="text-align: center; margin-top: -2.5rem; margin-bottom: 3.5rem; color: var(--text-light); font-weight: 600;">
                 Official Leaderboard Standings | Saturday, 23rd October 2021 | Venue: DAC&GC
             </p>
 
@@ -794,11 +1095,10 @@
         </div>
     </section>
 
-    <!-- Strategic Corporate Partners Section -->
     <section id="partners" class="section" style="background-color: #f8fafc; border-top: 1px solid var(--border-color);">
         <div class="container">
             <h2 class="section-title">Corporate & Media Network</h2>
-            
+
             <div class="partners-block">
                 <h3>Official Media Partner</h3>
                 <div class="partners-grid">
@@ -820,7 +1120,6 @@
         </div>
     </section>
 
-    <!-- Footer Space -->
     <footer>
         <div class="container footer-content">
             <div class="footer-col">
@@ -846,10 +1145,43 @@
             </div>   
         </div>
         <div class="footer-bottom">
-            <p>Design & Build by Abdullah Afsar<p>
+            <p class="footer-credit">Designed & Built by Abdullah Afsar</p>
             <p>&copy; 2026 Toruk Makto Pakistan's First Golf League. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <div id="designer-toast" class="designer-toast-card">
+        <div class="toast-left-border"></div>
+        <svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+        <div class="toast-text">
+            Designed & Built by <span class="toast-highlight">Abdullah Afsar</span>
+        </div>
+        <div style="flex-grow: 1;"></div>
+        <button class="toast-close-btn" onclick="dismissDesignerToast()" aria-label="Dismiss notification">✕</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const isDismissed = localStorage.getItem("designer_toast_hidden");
+            
+            if (!isDismissed) {
+                setTimeout(() => {
+                    const toast = document.getElementById("designer-toast");
+                    if (toast) toast.classList.add("slide-in");
+                }, 1200);
+            }
+        });
+
+        function dismissDesignerToast() {
+            const toast = document.getElementById("designer-toast");
+            if (toast) {
+                toast.classList.remove("slide-in");
+                localStorage.setItem("designer_toast_hidden", "true");
+            }
+        }
+    </script>
 </body>
 </html>
