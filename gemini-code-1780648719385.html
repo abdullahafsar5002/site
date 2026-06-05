@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toruk Makto - Pakistan's 1st Golf League</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0c4b31; /* Deep Golf Tournament Green */
+            --secondary-color: #111111; /* Off-black for premium contrast */
+            --accent-color: #b89742; /* Premium Gold */
+            --light-bg: #f7f9f6;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #777777;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Sticky Navigation Bar */
+        header {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+        }
+
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            background-color: var(--white);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Showcase Section */
+        .hero {
+            background: linear-gradient(rgba(12, 75, 49, 0.85), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            color: var(--white);
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero-logo-img {
+            height: 120px;
+            width: auto;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            background-color: var(--white);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-venues {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Global Typography */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            position: relative;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* About & Statement Box */
+        .statement-box {
+            background-color: var(--white);
+            border-left: 5px solid var(--accent-color);
+            padding: 2.5rem;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .statement-box blockquote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Media Network Grid */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .media-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .media-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Franchise Roster Configurations */
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .team-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .team-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .team-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .team-meta {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        .team-meta strong {
+            color: var(--accent-color);
+        }
+
+        .team-body {
+            padding: 1.5rem;
+        }
+
+        .roster-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-weight: 700;
+        }
+
+        .roster-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .roster-list li {
+            padding: 0.25rem 0;
+            border-bottom: 1px dashed var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            padding-right: 0.5rem;
+        }
+
+        .roster-list li span {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .other-teams {
+            margin-top: 3rem;
+            text-align: center;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .other-teams span {
+            display: inline-block;
+            background-color: #e2e8f0;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Leaderboard & Standings Table */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        th:first-child { border-top-left-radius: 8px; }
+        th:last-child { border-top-right-radius: 8px; }
+
+        td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) { background-color: #f8fafc; }
+
+        .highlight-row {
+            font-weight: 700;
+            color: var(--primary-color);
+            background-color: #f0fdf4 !important;
+        }
+
+        /* Top Individual Performers Area */
+        .performers-card {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .performers-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .performers-list li {
+            background-color: var(--light-bg);
+            padding: 1.25rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .performers-list strong {
+            display: block;
+            color: var(--secondary-color);
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .performers-list span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Strategic Corporate Matrix */
+        .partners-block {
+            margin-bottom: 3rem;
+        }
+
+        .partners-block h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .partner-logo-box {
+            background-color: var(--white);
+            padding: 1.5rem 2.5rem;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 220px;
+            text-align: center;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Social Media Elements Styling */
+        .social-links-wrapper {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1e293b;
+            color: #cbd5e1;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184, 151, 66, 0.2);
+        }
+
+        /* Footer Configurations */
+        footer {
+            background-color: var(--secondary-color);
+            color: #94a3b8;
+            padding: 4rem 0 2rem 0;
+            font-size: 0.9rem;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .roster-list {
+                grid-template-columns: 1fr;
+            }
+            .social-links-wrapper {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <header>
+        <div class="container navbar">
+            <div class="brand-wrapper">
+                <img src="logo toruk_2.jpg" alt="Toruk Makto Logo" class="nav-logo-img">
+                <div class="logo-text">Toruk <span>Makto</span></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#teams">Teams</a></li>
+                <li><a href="#standings">Standings</a></li>
+                <li><a href="#partners">Partners</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <section class="hero">
+        <div class="container">
+            <img src="logo toruk_2.jpg" alt="Toruk Makto Platinum Logo" class="hero-logo-img">
+            <h1>PAKISTAN'S 1ST GOLF LEAGUE</h1>
+            <p>Bridging premium corporate excellence with top-tier professional golfing talent across Pakistan's legendary fairways.</p>
+            <div class="hero-venues">Official Venue Partners: Airmen Golf Club & DAC&GC</div>
+        </div>
+    </section>
+
+    <!-- About & News Media Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">League Overview</h2>
+            
+            <div class="statement-box">
+                <blockquote>
+                    "For everything you have done for us in the past & supporting our management team, players, we at Toruk Makto Pakistan just want you to know how thankful we are, and we look forward to a prosperous future together."
+                </blockquote>
+            </div>
+
+            <div class="media-grid">
+                <div class="media-card">
+                    <h3>Television Broadcast</h3>
+                    <p>Featured extensively on the premier national sports television broadcast program <strong>"REPLAY"</strong>, bringing specialized weekly match breakdowns and expert structural league analysis to fans nationwide.</p>
+                </div>
+                <div class="media-card">
+                    <h3>Print & Digital Press</h3>
+                    <p>Widely covered by premium national publications including native Urdu print updates in the <strong>Daily Express</strong>, recording historical background profiles of our milestone launch tournament in Karachi.</p>
+                </div>
+                <div class="media-card">
+                    <h3>Media Partnership</h3>
+                    <p>Officially integrated in a long-term strategic layout alongside <strong>Dawn News Television Network</strong>, ensuring continuous multi-platform athletic visibility and polished digital content delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teams and Rosters Section -->
+    <section id="teams" class="section" style="background-color: #f1f5f9;">
+        <div class="container">
+            <h2 class="section-title">Official League Franchises</h2>
+            
+            <div class="teams-grid">
+                <!-- Team 1 -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <h3>Grey Wolf</h3>
+                        <div class="team-meta">Captain: <strong>Ather Abbas (HC 18)</strong> | Sponsor: <strong>tsm&co.</strong></div>
+                    </div>
+                    <div class="team-body">
+                        <div class="roster-title">Official Roster</div>
+                        <ul class="roster-list">
+                            <li>Col Munawar Ahmed <span>HC 14</span></li>
+                            <li>Brig Abid Rao <span>HC 14</span></li>
+                            <li>Brig Khadim Jatoi <span>HC 14</span></li>
+                            <li>Kamran Shehzad <span>HC 18</span></li>
+                            <li>Abrar Asif <span>HC 16</span></li>
+                            <li>Abdul Wahab <span>HC 18</span></li>
+                            <li>Capt Ansar <span>HC 4</span></li>
+                            <li>Abdullah Ansar <span>HC 7</span></li>
+                            <li>Ather Abbas <span>HC 18</span></li>
+                            <li>Amjad Saeed <span>HC 8</span></li>
+                            <li>Capt Aleem Mushtaq <span>HC 12</span></li>
+                            <li>Aman Aftab <span>HC 12</span></li>
+                            <li>Haider Bilal <span>-</span></li>
+                            <li>Jehanzaib Saeed <span>HC 18</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Team 2 -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <h3>Viper Combat</h3>
+                        <div class="team-meta">Owner: <strong>Maj Gen Tariq Suri (R)</strong> | Captain: <strong>Brig Tabassum Pervez (R)</strong></div>
+                    </div>
+                    <div class="team-body">
+                        <div class="roster-title">Official Roster (Sponsor: Marine Group)</div>
+                        <ul class="roster-list">
+                            <li>Brig Junaid <span>HC 15</span></li>
+                            <li>Brig Reza Hasan <span>HC 14</span></li>
+                            <li>Brig Qasim Changhazi <span>HC 9</span></li>
+                            <li>Waseem Ghani <span>HC 10</span></li>
+                            <li>Brig Basharat <span>HC 13</span></li>
+                            <li>Col Aashar Rizwan <span>HC 9</span></li>
+                            <li>Brig Abid <span>HC 14</span></li>
+                            <li>Brig Retd M. Zubair <span>HC 11</span></li>
+                            <li>Brig Khadim Jatoi <span>HC 15</span></li>
+                            <li>Col Munawer <span>HC 15</span></li>
+                            <li>Brig Farhan <span>HC 12</span></li>
+                            <li>Col Maqbool Shah <span>HC 16</span></li>
+                            <li>Lt Col Ansar Iqbal <span>HC 9</span></li>
+                            <li>Sqn Ldr Aamir <span>HC 10</span></li>
+                            <li>Adnan Javed <span>HC 10</span></li>
+                            <li>Col Farooq Niazi <span>HC 14</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Team 3 -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <h3>Markhors</h3>
+                        <div class="team-meta">Captain: <strong>Col Masood</strong> | Franchise: <strong>Markhor Warriors</strong></div>
+                    </div>
+                    <div class="team-body">
+                        <div class="roster-title">Official Roster</div>
+                        <ul class="roster-list">
+                            <li>Col Masood <span>-</span></li>
+                            <li>Maj Irfan <span>-</span></li>
+                            <li>Umer Khalid <span>-</span></li>
+                            <li>Umar Intesar <span>-</span></li>
+                            <li>M. Qasim <span>-</span></li>
+                            <li>Hamza Ghani <span>-</span></li>
+                            <li>Usman Masood <span>-</span></li>
+                            <li>Nadeem Iftikhar <span>-</span></li>
+                            <li>Naveed Ashraf <span>-</span></li>
+                            <li>Anwer Khan <span>-</span></li>
+                            <li>Muddassar Khan <span>-</span></li>
+                            <li>Nadeem-ul-Haq <span>-</span></li>
+                            <li>Sami Shaikh <span>-</span></li>
+                            <li>Raza Ali <span>-</span></li>
+                            <li>Umer Rehman <span>-</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Team 4 -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <h3>Nocturnal Bats</h3>
+                        <div class="team-meta">Captain: <strong>Irfan Ali (HC 18)</strong> | Sponsor: <strong>Braun</strong></div>
+                    </div>
+                    <div class="team-body">
+                        <div class="roster-title">Official Roster</div>
+                        <ul class="roster-list">
+                            <li>Irfan Ali <span>HC 18</span></li>
+                            <li>Lt Cdr Naeem Mirza <span>HC 16</span></li>
+                            <li>Asim Shah <span>HC 12</span></li>
+                            <li>Amanullah <span>HC 18</span></li>
+                            <li>Musab Asif <span>HC 20</span></li>
+                            <li>Maj Sharjeel <span>HC 4</span></li>
+                            <li>Maj Gen Zafar <span>HC 15</span></li>
+                            <li>Mukhzar Mehmood <span>HC 5</span></li>
+                            <li>Col Asif Hameed <span>HC 12</span></li>
+                            <li>Nawaz Sipra <span>HC 18</span></li>
+                            <li>Shayan Rashid <span>HC 15</span></li>
+                            <li>Col Shoaib <span>HC 18</span></li>
+                            <li>Hayder Bilal <span>HC 11.5</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Team 5 -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <h3>Snow Leopard</h3>
+                        <div class="team-meta">Owner/Captain: <strong>Sir Asad I Khan</strong> | Sponsor: <strong>UMA</strong></div>
+                    </div>
+                    <div class="team-body">
+                        <div class="roster-title">Official Roster</div>
+                        <ul class="roster-list">
+                            <li>Shahid Azim Khan <span>-</span></li>
+                            <li>Zahid Azim Khan <span>-</span></li>
+                            <li>Imran Khwaja <span>-</span></li>
+                            <li>Tariq Bin Aijaz <span>-</span></li>
+                            <li>Khurram Iqbal <span>-</span></li>
+                            <li>Raza Rashid <span>-</span></li>
+                            <li>Ali Maniya <span>-</span></li>
+                            <li>Yousuf Kadeer <span>-</span></li>
+                            <li>Ahmed Jamil Siddiqi <span>-</span></li>
+                            <li>Navaid Ali <span>-</span></li>
+                            <li>Sajid Sharif <span>-</span></li>
+                            <li>Noman Haider <span>-</span></li>
+                            <li>Dr. Waqas Burki <span>-</span></li>
+                            <li>Salman Achmed <span>-</span></li>
+                            <li>Zyre Qazi <span>-</span></li>
+                            <li>Amir Qazi <span>-</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-teams">
+                <div class="roster-title" style="margin-bottom:0.5rem;">Additional Competing League Franchises</div>
+                <span>Black Tiger</span>
+                <span>Sky Hawk</span>
+                <span>Karachi Lions</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tournament Standings & Scorecard Section -->
+    <section id="standings" class="section">
+        <div class="container">
+            <h2 class="section-title">Tournament Results</h2>
+            <p style="text-align: center; margin-top: -2rem; margin-bottom: 3rem; color: var(--text-light); font-weight: 600;">
+                Official Leaderboard Standings | Saturday, 23rd October 2021 | Venue: DAC&GC
+            </p>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Team Franchise Name</th>
+                            <th>Combined Gross</th>
+                            <th>Combined Net</th>
+                            <th>Total Accumulated Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight-row">
+                            <td>1</td>
+                            <td>Markhor Warriors</td>
+                            <td>291</td>
+                            <td>273</td>
+                            <td>564</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Viper Combat GP</td>
+                            <td>322</td>
+                            <td>281</td>
+                            <td>603</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Nocturnal Bats</td>
+                            <td>330</td>
+                            <td>273</td>
+                            <td>603</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Grey Wolf</td>
+                            <td>330</td>
+                            <td>285</td>
+                            <td>615</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="performers-card">
+                <h3 style="color: var(--primary-color); font-size: 1.4rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem;">
+                    Top Individual Standout Round Performances
+                </h3>
+                <ul class="performers-list">
+                    <li>
+                        <strong>Hamza Ghani</strong>
+                        <span>Markhor Warriors | Carded a spectacular low gross score of <strong>68</strong> (Handicap: 3 / Net: 65)</span>
+                    </li>
+                    <li>
+                        <strong>Lt Cdr Naeem Mirza</strong>
+                        <span>Nocturnal Bats | Delivered a dominant low net round of <strong>64</strong> (Gross: 80 / Handicap: 16)</span>
+                    </li>
+                    <li>
+                        <strong>Yashal Shah</strong>
+                        <span>Karachi Lions | Maintained exceptional early momentum finishing with a gross score of <strong>72</strong></span>
+                    </li>
+                    <li>
+                        <strong>Gp Capt Aftab A Khan</strong>
+                        <span>Viper Combat GP | Solidified his lineup positioning with a composed gross score card of <strong>80</strong></span>
+                    </li>
+                    <li>
+                        <strong>Hassan Hashmi</strong>
+                        <span>Grey Wolf | Led his entire squad bracket by securing their leading low gross team-score of <strong>83</strong></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Corporate Partners Section -->
+    <section id="partners" class="section" style="background-color: #f8fafc; border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <h2 class="section-title">Corporate & Media Network</h2>
+            
+            <div class="partners-block">
+                <h3>Official Media Partner</h3>
+                <div class="partners-grid">
+                    <div class="partner-logo-box">DAWN NEWS</div>
+                </div>
+            </div>
+
+            <div class="partners-block">
+                <h3>Main Brand Sponsors</h3>
+                <div class="partners-grid">
+                    <div class="partner-logo-box">BRAUN</div>
+                    <div class="partner-logo-box">SKYFLAME</div>
+                    <div class="partner-logo-box">JUBILEE LIFE INSURANCE</div>
+                    <div class="partner-logo-box">UMA (United Marine Agencies)</div>
+                    <div class="partner-logo-box">MARINE GROUP</div>
+                    <div class="partner-logo-box">tsm&co.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Space -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>Toruk Makto Golf League</h4>
+                <p>The premier commercial structural framework developing competitive corporate golf environments across Pakistan.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Secretarial Headquarters</h4>
+                <p>Karachi Office Space,<br>Sindh, Pakistan.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Digital Hub</h4>
+                <p>Explore resources, live sheets, and tournament archives online at:</p>
+                <p style="margin-top: 0.5rem;"><a href="http://www.torukmaktoleague.com/" style="color: var(--accent-color); font-weight:600;">www.torukmaktoleague.com</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <p>Stay updated with our official live tournament coverage & media announcements:</p>
+                <div class="social-links-wrapper">
+                    <a href="https://www.facebook.com/TorukMaktoGolfLeague/" class="social-btn" target="_blank">Facebook</a>
+                    <a href="https://www.instagram.com/torukmaktoleague" class="social-btn" target="_blank">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Toruk Makto Pakistan's First Golf League. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
